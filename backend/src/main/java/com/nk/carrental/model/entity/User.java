@@ -28,8 +28,9 @@ public class User {
     @Column(nullable = false)
     private boolean enabled = true;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
     private OffsetDateTime createdAt;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

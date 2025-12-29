@@ -17,4 +17,11 @@ spring:
 
 logging:
   level:
-    org.hibernate.SQL: debug
+    org.springframework.security: DEBUG
+
+app:
+  jwt:
+    secret: "fA9#qL2X@7mP!sRkW3C$Z8H^EJY0dB&Ue4M"
+    expirationMinutes: 120
+  cors:
+    allowedOrigins: "http://localhost:4200"
