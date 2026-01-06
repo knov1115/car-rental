@@ -2,8 +2,10 @@ package com.nk.carrental.repository;
 
 import com.nk.carrental.entity.RentalRequest;
 import com.nk.carrental.enums.RentalStatus;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,4 +23,21 @@ public interface RentalRequestRepository extends JpaRepository<RentalRequest, Lo
           and r.endDate > :startDate
     """)
     List<RentalRequest> findOverlappingApproved(Long carId, LocalDate startDate, LocalDate endDate);
+
+
+    @Query("""
+    select r from RentalRequest r
+    where r.car.id = :carId
+      and r.status = :status
+      and r.startDate < :endDate
+      and r.endDate > :startDate
+""")
+    List<RentalRequest> findOverlapping(
+            @Param("carId") Long carId,
+            @Param("startDate") LocalDate startDate,
+            @Param("endDate") LocalDate endDate,
+            @Param("status") RentalStatus status
+    );
+
+    List<RentalRequest> findByStatus(RentalStatus status, Sort sort);
 }
