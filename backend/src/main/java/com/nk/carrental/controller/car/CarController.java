@@ -1,6 +1,7 @@
-package com.nk.carrental.dto.car;
+package com.nk.carrental.controller.car;
 
 import com.nk.carrental.dto.car.CarResponse;
+import com.nk.carrental.service.car.CarService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

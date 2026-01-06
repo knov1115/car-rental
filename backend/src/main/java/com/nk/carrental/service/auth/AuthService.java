@@ -1,8 +1,11 @@
-package com.nk.carrental.dto.auth;
+package com.nk.carrental.service.auth;
 
-import com.nk.carrental.model.entity.User;
-import com.nk.carrental.model.repo.RoleRepository;
-import com.nk.carrental.model.repo.UserRepository;
+import com.nk.carrental.dto.auth.AuthResponse;
+import com.nk.carrental.dto.auth.LoginRequest;
+import com.nk.carrental.dto.auth.RegisterRequest;
+import com.nk.carrental.entity.User;
+import com.nk.carrental.repository.RoleRepository;
+import com.nk.carrental.repository.UserRepository;
 import com.nk.carrental.security.JwtService;
 import jakarta.transaction.Transactional;
 import org.springframework.security.authentication.*;

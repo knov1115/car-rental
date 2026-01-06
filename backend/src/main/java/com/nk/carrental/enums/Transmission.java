@@ -1,4 +1,4 @@
-package com.nk.carrental.model.enums;
+package com.nk.carrental.enums;
 
 public enum Transmission {
 

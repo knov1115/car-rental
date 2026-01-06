@@ -1,6 +1,6 @@
-package com.nk.carrental.model.repo;
+package com.nk.carrental.repository;
 
-import com.nk.carrental.model.entity.User;
+import com.nk.carrental.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

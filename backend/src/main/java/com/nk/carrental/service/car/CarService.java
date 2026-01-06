@@ -1,10 +1,11 @@
-package com.nk.carrental.dto.car;
+package com.nk.carrental.service.car;
 
 import com.nk.carrental.dto.car.CarCreateUpdateRequest;
 import com.nk.carrental.dto.car.CarResponse;
-import com.nk.carrental.model.entity.Car;
-import com.nk.carrental.model.enums.CarStatus;
-import com.nk.carrental.model.repo.CarRepository;
+import com.nk.carrental.entity.Car;
+import com.nk.carrental.mapper.CarMapper;
+import com.nk.carrental.enums.CarStatus;
+import com.nk.carrental.repository.CarRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class CarService {
 
     public List<CarResponse> listPublic() {
         return cars.findByStatus(CarStatus.ACTIVE).stream()
-                .map(this::toResponse)
+                .map(CarMapper::toResponse)
                 .toList();
     }
 
@@ -32,12 +33,12 @@ public class CarService {
         if (car.getStatus() != CarStatus.ACTIVE) {
             throw new IllegalArgumentException("Car not available");
         }
-        return toResponse(car);
+        return CarMapper.toResponse(car);
     }
 
     // ADMIN
     public List<CarResponse> listAllAdmin() {
-        return cars.findAll().stream().map(this::toResponse).toList();
+        return cars.findAll().stream().map(CarMapper::toResponse).toList();
     }
 
     @Transactional
@@ -46,21 +47,9 @@ public class CarService {
             throw new IllegalArgumentException("Plate number already exists");
         }
 
-        Car car = Car.builder()
-                .plateNumber(req.plateNumber())
-                .brand(req.brand())
-                .model(req.model())
-                .year(req.year())
-                .transmission(req.transmission())
-                .fuelType(req.fuelType())
-                .seats(req.seats())
-                .dailyPrice(req.dailyPrice())
-                .deposit(req.deposit())
-                .status(req.status())
-                .imageUrl(req.imageUrl())
-                .build();
+        Car car = CarMapper.toEntity(req);
 
-        return toResponse(cars.save(car));
+        return CarMapper.toResponse(cars.save(car));
     }
 
     @Transactional
@@ -73,19 +62,9 @@ public class CarService {
             throw new IllegalArgumentException("Plate number already exists");
         }
 
-        car.setPlateNumber(req.plateNumber());
-        car.setBrand(req.brand());
-        car.setModel(req.model());
-        car.setYear(req.year());
-        car.setTransmission(req.transmission());
-        car.setFuelType(req.fuelType());
-        car.setSeats(req.seats());
-        car.setDailyPrice(req.dailyPrice());
-        car.setDeposit(req.deposit());
-        car.setStatus(req.status());
-        car.setImageUrl(req.imageUrl());
+        CarMapper.updateEntity(car, req);
 
-        return toResponse(car);
+        return CarMapper.toResponse(car);
     }
 
     @Transactional
@@ -103,20 +82,4 @@ public class CarService {
         car.setStatus(CarStatus.INACTIVE);
     }
 
-    private CarResponse toResponse(Car c) {
-        return new CarResponse(
-                c.getId(),
-                c.getPlateNumber(),
-                c.getBrand(),
-                c.getModel(),
-                c.getYear(),
-                c.getTransmission(),
-                c.getFuelType(),
-                c.getSeats(),
-                c.getDailyPrice(),
-                c.getDeposit(),
-                c.getStatus(),
-                c.getImageUrl()
-        );
-    }
 }

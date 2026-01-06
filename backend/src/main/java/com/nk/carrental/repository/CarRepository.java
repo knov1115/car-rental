@@ -1,7 +1,7 @@
-package com.nk.carrental.model.repo;
+package com.nk.carrental.repository;
 
-import com.nk.carrental.model.entity.Car;
-import com.nk.carrental.model.enums.CarStatus;
+import com.nk.carrental.entity.Car;
+import com.nk.carrental.enums.CarStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.nk.carrental.model.entity;
+package com.nk.carrental.entity;
 
-import com.nk.carrental.model.enums.RentalStatus;
+import com.nk.carrental.enums.RentalStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

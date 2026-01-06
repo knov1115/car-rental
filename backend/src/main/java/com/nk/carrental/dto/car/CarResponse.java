@@ -1,8 +1,8 @@
 package com.nk.carrental.dto.car;
 
-import com.nk.carrental.model.enums.CarStatus;
-import com.nk.carrental.model.enums.FuelType;
-import com.nk.carrental.model.enums.Transmission;
+import com.nk.carrental.enums.CarStatus;
+import com.nk.carrental.enums.FuelType;
+import com.nk.carrental.enums.Transmission;
 
 import java.math.BigDecimal;
 

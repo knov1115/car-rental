@@ -1,5 +1,9 @@
-package com.nk.carrental.dto.auth;
+package com.nk.carrental.controller.auth;
 
+import com.nk.carrental.dto.auth.AuthResponse;
+import com.nk.carrental.service.auth.AuthService;
+import com.nk.carrental.dto.auth.LoginRequest;
+import com.nk.carrental.dto.auth.RegisterRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

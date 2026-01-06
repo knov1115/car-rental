@@ -1,4 +1,4 @@
-package com.nk.carrental.model.entity;
+package com.nk.carrental.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
