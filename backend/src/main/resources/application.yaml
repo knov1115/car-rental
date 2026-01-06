@@ -21,7 +21,7 @@ logging:
 
 app:
   jwt:
-    secret: "fA9#qL2X@7mP!sRkW3C$Z8H^EJY0dB&Ue4M"
+    secret: "3yq0kGfQyHqD9vZrX8mN1pL2sT7aWcE4"
     expirationMinutes: 120
   cors:
     allowedOrigins: "http://localhost:4200"
